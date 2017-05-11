@@ -1,6 +1,6 @@
 # Wilcoxon signed-rank test
 
-Statistic test for a Mathematics class in Polytech Lyon
+Statistic test for a mathematics class in Polytech Lyon
 
 ## The application
 

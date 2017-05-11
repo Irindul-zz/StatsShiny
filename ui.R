@@ -1,4 +1,4 @@
-shinyUI(fluidPage(
+shinyUI(fluidPage(theme='bootstrap.min.css',
   headerPanel("TP Statistiques Polytech 3A"),
 
   sidebarLayout(
@@ -8,7 +8,7 @@ shinyUI(fluidPage(
       p("Le test de rang signé de est un test statistique non paramétrique utilisé pour la comparaison de deux échantillons semblables."),
       p("Il peut être utilisé comme une alternative du test de Student."),
       HTML("
-          <p>Pour plus d'informations, voici la page anglaise <a href='https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test'>Wikipedia</a> du test. </p>
+          <p>Pour plus d'informations, voici la page anglaise <a target='_blank' href='https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test'>Wikipedia</a> du test. </p>
         "),
       h3("Notre Application"),
       p("Le test se lance après avoir importé un fichier au format CSV."),
@@ -40,7 +40,7 @@ shinyUI(fluidPage(
       checkboxInput('paired', 'Appariés', FALSE),
       h3("Notre Équipe"),
       HTML("<p>Réalisé par <b>Martial TARDY</b> et <b>Mathieu REGNARD</b></p>"),
-      HTML("<p>Dans le cadre d'un projet de statistiques à <a href='http://polytech.univ-lyon1.fr/''>Polytech Lyon</a> en INFO 3A </p> ")
+      HTML("<p>Dans le cadre d'un projet de statistiques à <a target='_blank'href='http://polytech.univ-lyon1.fr/''>Polytech Lyon</a> en INFO 3A </p> ")
 
       ),
     mainPanel(

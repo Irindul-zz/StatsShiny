@@ -1,22 +1,14 @@
 shinyUI(pageWithSidebar(
-  headerPanel("CSV Viewer"),
+  headerPanel("TP Statistiques Polytech 3A"),
   sidebarPanel(
-    fileInput('file1', 'Choose CSV File',
+    fileInput('file1', 'Choisir le fichier', buttonLabel = "Parcourir..", placeholder = "Aucun fichier séléctionné",
               accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')),
     tags$hr(),
-    checkboxInput('header', 'Header', TRUE),
-    radioButtons('sep', 'Separator',
-                 c(Comma=',',
-                   Semicolon=';',
-                   Tab='\t'),
-                 'Comma'),
-    radioButtons('quote', 'Quote',
-                 c(None='',
-                   'Double Quote'='"',
-                   'Single Quote'="'"),
-                 'Double Quote')
+    checkboxInput('paired', 'Appariés', FALSE)
   ),
   mainPanel(
-    tableOutput('contents')
+    tableOutput('contents'),
+    textOutput('message'),
+    verbatimTextOutput('result')
   )
 ))

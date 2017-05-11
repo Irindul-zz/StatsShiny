@@ -36,7 +36,7 @@ shinyServer(function(input, output) {
 
     if(is.null(x) || is.null(y))
       return(cat("Veuillez choisir un modèle de données correcte"))
-    
+
     if(input$paired){
       if(length(x) != length(y))
         return(cat("Veuillez choisir un modèle de données correcte"))
@@ -56,7 +56,7 @@ shinyServer(function(input, output) {
     cat("Comparrez maintenant", name, " avec ", name, "critique. Si |", name, "| > ", name, "critique, alors l'hypothèse est rejetée.\n")
 
     z <- qnorm(1-(pval/2))
-    cat("Valeur de z :", z);
+    cat("Valeur de z :", z, "\n");
 
     cat("Comparrez maintenant z avec Zcritique. Si |z| > Zcritique, alors l'hypothèse est rejetée.\n")
 
@@ -67,10 +67,50 @@ shinyServer(function(input, output) {
      results()
   })
 
+  plot1 <- function(){
+    inFile <- input$file1
+
+    if(is.null(inFile))
+      return(cat(""))
+
+    table <- read.csv(inFile$datapath, header=TRUE, sep=',', quote='')
+    x <- table[,1]
+    x <- x[!is.na(x)] #Pour enlever le NA dans les valeurs non définies
+
+    barplot(x, main="Premières Valeurs")
+            
+
+  }
+
+  plot2 <- function(){
+      inFile <- input$file1
+
+      if(is.null(inFile))
+        return(cat(""))
+
+      table <- read.csv(inFile$datapath, header=TRUE, sep=',', quote='')
+
+      y <- table[,2]
+      y <- y[!is.na(y)]
+
+      barplot(y, main="Secondes Valeurs")
+
+  }
+
+ 
+
+  output$plot1 <- renderPlot({
+      print(plot1())
+  })
+
+  output$plot2 <- renderPlot({
+      print(plot2())
+  })
+
 
   output$message <- renderText({
     if(is.null(inputTable()))
-      "Veuillez séléctionner un fichier de données correcte"
+      "Veuillez séléctionner le fichier à utiliser pour les tests."
     else "Voici les résultats : "
   })
 
